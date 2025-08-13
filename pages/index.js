@@ -14,8 +14,6 @@ import { checkDataFromAlgolia } from '@/lib/plugins/algolia'
  * @returns
  */
 const Index = props => {
-  console.log(1111)
-  return <div>saf</div>
   const theme = siteConfig('THEME', BLOG.THEME, props.NOTION_CONFIG)
   return <DynamicLayout theme={theme} layoutName='LayoutIndex' {...props} />
 }
@@ -28,6 +26,7 @@ export async function getStaticProps(req) {
   const { locale } = req
   const from = 'index'
   const props = await getGlobalData({ from, locale })
+  console.log(5555, props)
   const POST_PREVIEW_LINES = siteConfig(
     'POST_PREVIEW_LINES',
     12,
