@@ -30,6 +30,7 @@ const ClerkProvider = dynamic(() =>
  * @returns
  */
 const MyApp = ({ Component, pageProps }) => {
+  console.log(4444)
   // 一些可能出现 bug 的样式，可以统一放入该钩子进行调整
   useAdjustStyle()
 

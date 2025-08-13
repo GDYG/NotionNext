@@ -14,6 +14,8 @@ import { checkDataFromAlgolia } from '@/lib/plugins/algolia'
  * @returns
  */
 const Index = props => {
+  console.log(1111)
+  return <div>saf</div>
   const theme = siteConfig('THEME', BLOG.THEME, props.NOTION_CONFIG)
   return <DynamicLayout theme={theme} layoutName='LayoutIndex' {...props} />
 }

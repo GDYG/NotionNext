@@ -40,6 +40,7 @@ class MyDocument extends Document {
   }
 
   render() {
+    console.log(2222)
     return (
       <Html lang={BLOG.LANG}>
         <Head>
