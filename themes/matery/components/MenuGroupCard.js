@@ -1,6 +1,6 @@
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
-import Link from 'next/link'
+import SmartLink from '@/components/SmartLink'
 import CONFIG from '../config'
 
 const MenuGroupCard = props => {
@@ -13,19 +13,19 @@ const MenuGroupCard = props => {
   const links = [
     {
       name: locale.COMMON.ARTICLE,
-      to: '/archive',
+      href: '/archive',
       slot: archiveSlot,
       show: siteConfig('MATERY_MENU_ARCHIVE', null, CONFIG)
     },
     {
       name: locale.COMMON.CATEGORY,
-      to: '/category',
+      href: '/category',
       slot: categorySlot,
       show: siteConfig('MATERY_MENU_CATEGORY', null, CONFIG)
     },
     {
       name: locale.COMMON.TAGS,
-      to: '/tag',
+      href: '/tag',
       slot: tagSlot,
       show: siteConfig('MATERY_MENU_TAG', null, CONFIG)
     }
@@ -36,10 +36,10 @@ const MenuGroupCard = props => {
       {links.map(link => {
         if (link.show) {
           return (
-            <Link
-              key={`${link.to}`}
-              title={link.to}
-              href={link.to}
+            <SmartLink
+              key={`${link.href}`}
+              title={link.href}
+              href={link.href}
               target={link?.target}
               className={
                 'py-1.5 my-1 px-2 duration-300 text-base justify-center items-center cursor-pointer'
@@ -48,7 +48,7 @@ const MenuGroupCard = props => {
                 <div className='text-center'>{link.name}</div>
                 <div className='text-center font-semibold'>{link.slot}</div>
               </div>
-            </Link>
+            </SmartLink>
           )
         } else {
           return null
