@@ -7,27 +7,23 @@ import { getServerSideSitemap } from 'next-sitemap'
 
 export const getServerSideProps = async ctx => {
   let fields = []
-  const siteIds = BLOG.NOTION_PAGE_ID.split(',')
+  const siteId = BLOG.NOTION_PAGE_ID
+  const id = extractLangId(siteId)
+  const locale = extractLangPrefix(siteId)
+  // 第一个id站点默认语言
+  const siteData = await getGlobalData({
+    pageId: id,
+    from: 'sitemap.xml'
+  })
+  const link = siteConfig(
+    'LINK',
+    siteData?.siteInfo?.link,
+    siteData.NOTION_CONFIG
+  )
+  const localeFields = generateLocalesSitemap(link, siteData.allPages, locale)
+  fields = fields.concat(localeFields)
 
-  for (let index = 0; index < siteIds.length; index++) {
-    const siteId = siteIds[index]
-    const id = extractLangId(siteId)
-    const locale = extractLangPrefix(siteId)
-    // 第一个id站点默认语言
-    const siteData = await getGlobalData({
-      pageId: id,
-      from: 'sitemap.xml'
-    })
-    const link = siteConfig(
-      'LINK',
-      siteData?.siteInfo?.link,
-      siteData.NOTION_CONFIG
-    )
-    const localeFields = generateLocalesSitemap(link, siteData.allPages, locale)
-    fields = fields.concat(localeFields)
-  }
-
-  fields = getUniqueFields(fields);
+  fields = getUniqueFields(fields)
 
   // 缓存
   ctx.res.setHeader(
@@ -104,17 +100,20 @@ function generateLocalesSitemap(link, allPages, locale) {
 }
 
 function getUniqueFields(fields) {
-  const uniqueFieldsMap = new Map();
+  const uniqueFieldsMap = new Map()
 
   fields.forEach(field => {
-    const existingField = uniqueFieldsMap.get(field.loc);
+    const existingField = uniqueFieldsMap.get(field.loc)
 
-    if (!existingField || new Date(field.lastmod) > new Date(existingField.lastmod)) {
-      uniqueFieldsMap.set(field.loc, field);
+    if (
+      !existingField ||
+      new Date(field.lastmod) > new Date(existingField.lastmod)
+    ) {
+      uniqueFieldsMap.set(field.loc, field)
     }
-  });
+  })
 
-  return Array.from(uniqueFieldsMap.values());
+  return Array.from(uniqueFieldsMap.values())
 }
 
 export default () => {}

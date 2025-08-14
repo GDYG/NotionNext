@@ -4,7 +4,7 @@
   "homepage": "https://github.com/GDYG/NotionNext.git",
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "repository": {
     "type": "git",
@@ -74,9 +74,5 @@
   },
   "resolutions": {
     "axios": ">=0.21.1"
-  },
-  "bugs": {
-    "url": "https://github.com/tangly/NotionNext/issues",
-    "email": "tlyong1992@hotmail.com"
   }
 }
