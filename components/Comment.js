@@ -2,7 +2,15 @@ import Tabs from '@/components/Tabs'
 import { siteConfig } from '@/lib/config'
 import { isBrowser, isSearchEngineBot } from '@/lib/utils'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
+
+const TwikooCompenent = dynamic(
+  () => {
+    return import('@/components/Twikoo')
+  },
+  { ssr: false }
+)
 
 /**
  * 评论组件
