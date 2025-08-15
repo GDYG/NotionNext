@@ -9,9 +9,7 @@ import { initGoogleAdsense } from './GoogleAdsense'
 
 import Head from 'next/head'
 import ExternalScript from './ExternalScript'
-import WebWhiz from './Webwhiz'
 import { useGlobal } from '@/lib/global'
-import IconFont from './IconFont'
 
 /**
  * 各种插件脚本
@@ -25,11 +23,6 @@ const ExternalPlugin = props => {
   const DISABLE_PLUGIN = siteConfig('DISABLE_PLUGIN', null, NOTION_CONFIG)
   const THEME_SWITCH = siteConfig('THEME_SWITCH', null, NOTION_CONFIG)
   const DEBUG = siteConfig('DEBUG', null, NOTION_CONFIG)
-  const ANALYTICS_ACKEE_TRACKER = siteConfig(
-    'ANALYTICS_ACKEE_TRACKER',
-    null,
-    NOTION_CONFIG
-  )
   const ANALYTICS_VERCEL = siteConfig('ANALYTICS_VERCEL', null, NOTION_CONFIG)
   const ANALYTICS_BUSUANZI_ENABLE = siteConfig(
     'ANALYTICS_BUSUANZI_ENABLE',
@@ -40,17 +33,12 @@ const ExternalPlugin = props => {
   const FACEBOOK_APP_ID = siteConfig('FACEBOOK_APP_ID', null, NOTION_CONFIG)
   const FACEBOOK_PAGE_ID = siteConfig('FACEBOOK_PAGE_ID', null, NOTION_CONFIG)
   const FIREWORKS = siteConfig('FIREWORKS', null, NOTION_CONFIG)
-  const SAKURA = siteConfig('SAKURA', null, NOTION_CONFIG)
-  const STARRY_SKY = siteConfig('STARRY_SKY', null, NOTION_CONFIG)
   const MUSIC_PLAYER = siteConfig('MUSIC_PLAYER', null, NOTION_CONFIG)
-  const NEST = siteConfig('NEST', null, NOTION_CONFIG)
-  const FLUTTERINGRIBBON = siteConfig('FLUTTERINGRIBBON', null, NOTION_CONFIG)
   const COMMENT_TWIKOO_COUNT_ENABLE = siteConfig(
     'COMMENT_TWIKOO_COUNT_ENABLE',
     null,
     NOTION_CONFIG
   )
-  const RIBBON = siteConfig('RIBBON', null, NOTION_CONFIG)
   const CUSTOM_RIGHT_CLICK_CONTEXT_MENU = siteConfig(
     'CUSTOM_RIGHT_CLICK_CONTEXT_MENU',
     null,
@@ -70,18 +58,7 @@ const ExternalPlugin = props => {
     NOTION_CONFIG
   )
   const AD_WWADS_ID = siteConfig('AD_WWADS_ID', null, NOTION_CONFIG)
-  const COMMENT_ARTALK_SERVER = siteConfig(
-    'COMMENT_ARTALK_SERVER',
-    null,
-    NOTION_CONFIG
-  )
-  const COMMENT_ARTALK_JS = siteConfig('COMMENT_ARTALK_JS', null, NOTION_CONFIG)
   const COMMENT_TIDIO_ID = siteConfig('COMMENT_TIDIO_ID', null, NOTION_CONFIG)
-  const COMMENT_GITTER_ROOM = siteConfig(
-    'COMMENT_GITTER_ROOM',
-    null,
-    NOTION_CONFIG
-  )
   const ANALYTICS_BAIDU_ID = siteConfig(
     'ANALYTICS_BAIDU_ID',
     null,
@@ -102,12 +79,10 @@ const ExternalPlugin = props => {
     null,
     NOTION_CONFIG
   )
-  const TIANLI_KEY = siteConfig('TianliGPT_KEY', null, NOTION_CONFIG)
   const GLOBAL_JS = siteConfig('GLOBAL_JS', '', NOTION_CONFIG)
   const CLARITY_ID = siteConfig('CLARITY_ID', null, NOTION_CONFIG)
   const IMG_SHADOW = siteConfig('IMG_SHADOW', null, NOTION_CONFIG)
   const ANIMATE_CSS_URL = siteConfig('ANIMATE_CSS_URL', null, NOTION_CONFIG)
-  const MOUSE_FOLLOW = siteConfig('MOUSE_FOLLOW', null, NOTION_CONFIG)
   const CUSTOM_EXTERNAL_CSS = siteConfig(
     'CUSTOM_EXTERNAL_CSS',
     null,
@@ -189,29 +164,20 @@ const ExternalPlugin = props => {
     <>
       {/* 全局样式嵌入 */}
       <GlobalStyle />
-      {ENABLE_ICON_FONT && <IconFont />}
-      {MOUSE_FOLLOW && <MouseFollow />}
       {THEME_SWITCH && <ThemeSwitch />}
       {DEBUG && <DebugPanel />}
-      {ANALYTICS_ACKEE_TRACKER && <Ackee />}
       {ANALYTICS_GOOGLE_ID && <Gtag />}
       {ANALYTICS_VERCEL && <Analytics />}
       {ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
       {FACEBOOK_APP_ID && FACEBOOK_PAGE_ID && <Messenger />}
       {FIREWORKS && <Fireworks />}
-      {SAKURA && <Sakura />}
-      {STARRY_SKY && <StarrySky />}
       {MUSIC_PLAYER && <MusicPlayer />}
-      {NEST && <Nest />}
-      {FLUTTERINGRIBBON && <FlutteringRibbon />}
       {COMMENT_TWIKOO_COUNT_ENABLE && <TwikooCommentCounter {...props} />}
-      {RIBBON && <Ribbon />}
       {DIFY_CHATBOT_ENABLED && <DifyChatbot />}
       {CUSTOM_RIGHT_CLICK_CONTEXT_MENU && <CustomContextMenu {...props} />}
       {!CAN_COPY && <DisableCopy />}
       {WEB_WHIZ_ENABLED && <WebWhiz />}
       {AD_WWADS_BLOCK_DETECT && <AdBlockDetect />}
-      {TIANLI_KEY && <TianliGPT />}
       <VConsole />
       {ENABLE_NPROGRSS && <LoadingProgress />}
       <AosAnimation />
@@ -338,31 +304,8 @@ const ExternalPlugin = props => {
 
       {/* {COMMENT_TWIKOO_ENV_ID && <script defer src={COMMENT_TWIKOO_CDN_URL} />} */}
 
-      {COMMENT_ARTALK_SERVER && <script defer src={COMMENT_ARTALK_JS} />}
-
       {COMMENT_TIDIO_ID && (
         <script async src={`//code.tidio.co/${COMMENT_TIDIO_ID}.js`} />
-      )}
-
-      {/* gitter聊天室 */}
-      {COMMENT_GITTER_ROOM && (
-        <>
-          <script
-            src='https://sidecar.gitter.im/dist/sidecar.v1.js'
-            async
-            defer
-          />
-          <script
-            async
-            dangerouslySetInnerHTML={{
-              __html: `
-            ((window.gitter = {}).chat = {}).options = {
-              room: '${COMMENT_GITTER_ROOM}'
-            };
-            `
-            }}
-          />
-        </>
       )}
 
       {/* 百度统计 */}
@@ -455,19 +398,6 @@ const ThemeSwitch = dynamic(() => import('@/components/ThemeSwitch'), {
 const Fireworks = dynamic(() => import('@/components/Fireworks'), {
   ssr: false
 })
-const MouseFollow = dynamic(() => import('@/components/MouseFollow'), {
-  ssr: false
-})
-const Nest = dynamic(() => import('@/components/Nest'), { ssr: false })
-const FlutteringRibbon = dynamic(
-  () => import('@/components/FlutteringRibbon'),
-  { ssr: false }
-)
-const Ribbon = dynamic(() => import('@/components/Ribbon'), { ssr: false })
-const Sakura = dynamic(() => import('@/components/Sakura'), { ssr: false })
-const StarrySky = dynamic(() => import('@/components/StarrySky'), {
-  ssr: false
-})
 const DifyChatbot = dynamic(() => import('@/components/DifyChatbot'), {
   ssr: false
 })
@@ -479,7 +409,6 @@ const Analytics = dynamic(
   { ssr: false }
 )
 const MusicPlayer = dynamic(() => import('@/components/Player'), { ssr: false })
-const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
 const Busuanzi = dynamic(() => import('@/components/Busuanzi'), { ssr: false })
 const Messenger = dynamic(() => import('@/components/FacebookMessenger'), {
@@ -507,9 +436,6 @@ const Coze = dynamic(() => import('@/components/Coze'), {
   ssr: false
 })
 const LA51 = dynamic(() => import('@/components/LA51'), {
-  ssr: false
-})
-const TianliGPT = dynamic(() => import('@/components/TianliGPT'), {
   ssr: false
 })
 

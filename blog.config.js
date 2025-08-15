@@ -17,25 +17,27 @@ const BLOG = {
   // 3.14.1版本后，欢迎语在此配置，英文逗号隔开 ,  即可支持多个欢迎语打字效果。
   GREETING_WORDS:
     process.env.NEXT_PUBLIC_GREETING_WORDS ||
-    '您好，我是GDYG,我是一名程序员,欢迎来到我的博客🎉',
+    '您好，我是Ann，我是一名程序员，欢迎来到我的博客🎉',
 
   CUSTOM_MENU: process.env.NEXT_PUBLIC_CUSTOM_MENU || false, // 支持Menu 类型，从3.12.0版本起，各主题将逐步支持灵活的二级菜单配置，替代了原来的Page类型，此配置是试验功能、默认关闭。
 
   AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || 'GDYG', // 您的昵称
   BIO: process.env.NEXT_PUBLIC_BIO || '一个普通的Bug战士🐞', // 作者简介 - e.g 键盘舞者，码字如舞💃
-  LINK: process.env.NEXT_PUBLIC_LINK || 'https://gdyg5.top', // 网站地址
+  LINK: process.env.NEXT_PUBLIC_LINK || 'https://gdyg.blog', // 网站地址
   KEYWORDS: process.env.NEXT_PUBLIC_KEYWORD || 'Notion, 博客', // 网站关键词 英文逗号隔开
 
   // 社交链接，不需要可留空白，例如 CONTACT_WEIBO:''
   CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'gdyg01@gmail.com', // 邮箱地址
   CONTACT_WEIBO: process.env.NEXT_PUBLIC_CONTACT_WEIBO || '', // 你的微博个人主页
   CONTACT_TWITTER:
-    process.env.NEXT_PUBLIC_CONTACT_TWITTER ||
-    'https://twitter.com/gdyg66794664', // 你的twitter个人主页
+    process.env.NEXT_PUBLIC_CONTACT_TWITTER || 'https://x.com/gdyg66794664', // 你的twitter个人主页
   CONTACT_GITHUB:
     process.env.NEXT_PUBLIC_CONTACT_GITHUB || 'https://github.com/GDYG', // 你的github个人主页
-  CONTACT_TELEGRAM: process.env.NEXT_PUBLIC_CONTACT_TELEGRAM || '', // 你的telegram 地址 例如 https://t.me/tangly_1024
-  CONTACT_LINKEDIN: process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || '', // 你的linkedIn 首页
+  CONTACT_TELEGRAM:
+    process.env.NEXT_PUBLIC_CONTACT_TELEGRAM || 'https://t.me/GDYG05', // 你的telegram 地址 例如 https://t.me/tangly_1024
+  CONTACT_LINKEDIN:
+    process.env.NEXT_PUBLIC_CONTACT_LINKEDIN ||
+    'https://www.linkedin.com/in/亚辉-安-2a478a357', // 你的linkedIn 首页
   CONTACT_INSTAGRAM: process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || '', // 您的instagram地址
   CONTACT_BILIBILI: process.env.NEXT_PUBLIC_CONTACT_BILIBILI || '', // B站主页
   CONTACT_YOUTUBE: process.env.NEXT_PUBLIC_CONTACT_YOUTUBE || '', // Youtube主页
@@ -67,29 +69,6 @@ const BLOG = {
 
   // END ************网站字体*****************
 
-  // 路径和组件映射，不同路径分别展示主题的什么组件
-  LAYOUT_MAPPINGS: {
-    '-1': 'LayoutBase',
-    '/': 'LayoutIndex',
-    '/archive': 'LayoutArchive',
-    '/page/[page]': 'LayoutPostList',
-    '/category/[category]': 'LayoutPostList',
-    '/category/[category]/page/[page]': 'LayoutPostList',
-    '/tag/[tag]': 'LayoutPostList',
-    '/tag/[tag]/page/[page]': 'LayoutPostList',
-    '/search': 'LayoutSearch',
-    '/search/[keyword]': 'LayoutSearch',
-    '/search/[keyword]/page/[page]': 'LayoutSearch',
-    '/404': 'Layout404',
-    '/tag': 'LayoutTagIndex',
-    '/category': 'LayoutCategoryIndex',
-    '/[prefix]': 'LayoutSlug',
-    '/[prefix]/[slug]': 'LayoutSlug',
-    '/[prefix]/[slug]/[...suffix]': 'LayoutSlug',
-    '/signin': 'LayoutSignIn',
-    '/signup': 'LayoutSignUp'
-  },
-
   CAN_COPY: process.env.NEXT_PUBLIC_CAN_COPY || true, // 是否允许复制页面内容 默认允许，如果设置为false、则全栈禁止复制内容。
   // 自定义右键菜单
   CUSTOM_RIGHT_CLICK_CONTEXT_MENU:
@@ -108,7 +87,6 @@ const BLOG = {
   CUSTOM_RIGHT_CLICK_CONTEXT_MENU_TAG:
     process.env.NEXT_PUBLIC_CUSTOM_RIGHT_CLICK_CONTEXT_MENU_THEME_TAG || true, // 是否显示标签
   // 高级用法
-  ...require('./conf/layout-map.config'), // 路由与布局映射自定义，例如自定义特定路由的页面布局
   ...require('./conf/notion.config'), // 读取notion数据库相关的扩展配置，例如自定义表头
   ...require('./conf/dev.config'), // 开发、调试时需要关注的配置
 
@@ -205,34 +183,9 @@ const BLOG = {
     '251, 243, 140'
   ],
 
-  // 樱花飘落特效
-  SAKURA: process.env.NEXT_PUBLIC_SAKURA || false, // 开关
-  // 漂浮线段特效
-  NEST: process.env.NEXT_PUBLIC_NEST || false, // 开关
-  // 动态彩带特效
-  FLUTTERINGRIBBON: process.env.NEXT_PUBLIC_FLUTTERINGRIBBON || false, // 开关
-  // 静态彩带特效
-  RIBBON: process.env.NEXT_PUBLIC_RIBBON || false, // 开关
-  // 星空雨特效 黑夜模式才会生效
-  STARRY_SKY: process.env.NEXT_PUBLIC_STARRY_SKY || true, // 开关
-
   //   ********挂件组件相关********
-  // AI 文章摘要生成 @see https://docs_s.tianli0.top/
-  TianliGPT_CSS:
-    process.env.NEXT_PUBLIC_TIANLI_GPT_CSS ||
-    'https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.15.2/tianli_gpt.css',
-  TianliGPT_JS:
-    process.env.NEXT_PUBLIC_TIANLI_GPT_JS ||
-    'https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.15.2/tianli_gpt.js',
-  TianliGPT_KEY: process.env.NEXT_PUBLIC_TIANLI_GPT_KEY || '',
-
   // Chatbase 是否显示chatbase机器人 https://www.chatbase.co/
   CHATBASE_ID: process.env.NEXT_PUBLIC_CHATBASE_ID || null,
-  // WebwhizAI 机器人 @see https://github.com/webwhiz-ai/webwhiz
-  WEB_WHIZ_ENABLED: process.env.NEXT_PUBLIC_WEB_WHIZ_ENABLED || false, // 是否显示
-  WEB_WHIZ_BASE_URL:
-    process.env.NEXT_PUBLIC_WEB_WHIZ_BASE_URL || 'https://api.webwhiz.ai', // 可以自建服务器
-  WEB_WHIZ_CHAT_BOT_ID: process.env.NEXT_PUBLIC_WEB_WHIZ_CHAT_BOT_ID || null, // 在后台获取ID
   DIFY_CHATBOT_ENABLED: process.env.NEXT_PUBLIC_DIFY_CHATBOT_ENABLED || false,
   DIFY_CHATBOT_BASE_URL: process.env.NEXT_PUBLIC_DIFY_CHATBOT_BASE_URL || '',
   DIFY_CHATBOT_TOKEN: process.env.NEXT_PUBLIC_DIFY_CHATBOT_TOKEN || '',
@@ -285,15 +238,6 @@ const BLOG = {
   COMMENT_HIDE_SINGLE_TAB:
     process.env.NEXT_PUBLIC_COMMENT_HIDE_SINGLE_TAB || false, // Whether hide the tab when there's no tabs. 只有一个评论组件时是否隐藏切换组件的标签页
 
-  // artalk 评论插件
-  COMMENT_ARTALK_SERVER: process.env.NEXT_PUBLIC_COMMENT_ARTALK_SERVER || '', // ArtalkServert后端地址 https://artalk.js.org/guide/deploy.html
-  COMMENT_ARTALK_JS:
-    process.env.NEXT_PUBLIC_COMMENT_ARTALK_JS ||
-    'https://cdnjs.cloudflare.com/ajax/libs/artalk/2.5.5/Artalk.js', // ArtalkServert js cdn
-  COMMENT_ARTALK_CSS:
-    process.env.NEXT_PUBLIC_COMMENT_ARTALK_CSS ||
-    'https://cdnjs.cloudflare.com/ajax/libs/artalk/2.5.5/Artalk.css', // ArtalkServert css cdn
-
   // twikoo
   COMMENT_TWIKOO_ENV_ID: process.env.NEXT_PUBLIC_COMMENT_ENV_ID || '', // TWIKOO后端地址 腾讯云环境填envId；Vercel环境填域名
   COMMENT_TWIKOO_COUNT_ENABLE:
@@ -301,84 +245,6 @@ const BLOG = {
   COMMENT_TWIKOO_CDN_URL:
     process.env.NEXT_PUBLIC_COMMENT_TWIKOO_CDN_URL ||
     'https://cdn.staticfile.org/twikoo/1.6.17/twikoo.min.js', // twikoo客户端cdn
-
-  // utterance
-  COMMENT_UTTERRANCES_REPO:
-    process.env.NEXT_PUBLIC_COMMENT_UTTERRANCES_REPO || 'GDYG/NotionNext', // 你的代码仓库名， 例如我是
-
-  // giscus @see https://giscus.app/
-  COMMENT_GISCUS_REPO:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO || 'GDYG/NotionNext', // 你的Github仓库名 e.g 'GDYG/NotionNext'
-  COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID || '', // 你的Github Repo ID e.g ( 設定完 giscus 即可看到 )
-  COMMENT_GISCUS_CATEGORY_ID:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID || '', // 你的Github Discussions 內的 Category ID ( 設定完 giscus 即可看到 )
-  COMMENT_GISCUS_MAPPING:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING || 'pathname', // 你的Github Discussions 使用哪種方式來標定文章, 預設 'pathname'
-  COMMENT_GISCUS_REACTIONS_ENABLED:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REACTIONS_ENABLED || '1', // 你的 Giscus 是否開啟文章表情符號 '1' 開啟 "0" 關閉 預設開啟
-  COMMENT_GISCUS_EMIT_METADATA:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_EMIT_METADATA || '0', // 你的 Giscus 是否提取 Metadata '1' 開啟 '0' 關閉 預設關閉
-  COMMENT_GISCUS_INPUT_POSITION:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_INPUT_POSITION || 'bottom', // 你的 Giscus 發表留言位置 'bottom' 尾部 'top' 頂部, 預設 'bottom'
-  COMMENT_GISCUS_LANG: process.env.NEXT_PUBLIC_COMMENT_GISCUS_LANG || 'zh-CN', // 你的 Giscus 語言 e.g 'en', 'zh-TW', 'zh-CN', 預設 'en'
-  COMMENT_GISCUS_LOADING:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_LOADING || 'lazy', // 你的 Giscus 載入是否漸進式載入, 預設 'lazy'
-  COMMENT_GISCUS_CROSSORIGIN:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CROSSORIGIN || 'anonymous', // 你的 Giscus 可以跨網域, 預設 'anonymous'
-
-  COMMENT_CUSDIS_APP_ID: process.env.NEXT_PUBLIC_COMMENT_CUSDIS_APP_ID || '', // data-app-id 36位 see https://cusdis.com/
-  COMMENT_CUSDIS_HOST:
-    process.env.NEXT_PUBLIC_COMMENT_CUSDIS_HOST || 'https://cusdis.com', // data-host, change this if you're using self-hosted version
-  COMMENT_CUSDIS_SCRIPT_SRC:
-    process.env.NEXT_PUBLIC_COMMENT_CUSDIS_SCRIPT_SRC || '/js/cusdis.es.js', // change this if you're using self-hosted version
-
-  // gitalk评论插件 更多参考 https://gitalk.github.io/
-  COMMENT_GITALK_REPO:
-    process.env.NEXT_PUBLIC_COMMENT_GITALK_REPO || 'NotionNext', // 你的Github仓库名，例如 'NotionNext'
-  COMMENT_GITALK_OWNER: process.env.NEXT_PUBLIC_COMMENT_GITALK_OWNER || 'GDYG', // 你的用户名 e.g GDYG
-  COMMENT_GITALK_ADMIN: process.env.NEXT_PUBLIC_COMMENT_GITALK_ADMIN || 'GDYG', // 管理员用户名、一般是自己 e.g 'GDYG'
-  COMMENT_GITALK_CLIENT_ID:
-    process.env.NEXT_PUBLIC_COMMENT_GITALK_CLIENT_ID || '', // e.g 20位ID ， 在gitalk后台获取
-  COMMENT_GITALK_CLIENT_SECRET:
-    process.env.NEXT_PUBLIC_COMMENT_GITALK_CLIENT_SECRET || '', // e.g 40位ID， 在gitalk后台获取
-  COMMENT_GITALK_DISTRACTION_FREE_MODE: false, // 类似facebook的无干扰模式
-  COMMENT_GITALK_JS_CDN_URL:
-    process.env.NEXT_PUBLIC_COMMENT_GITALK_JS_CDN_URL ||
-    'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', // gitalk客户端 js cdn
-  COMMENT_GITALK_CSS_CDN_URL:
-    process.env.NEXT_PUBLIC_COMMENT_GITALK_CSS_CDN_URL ||
-    'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css', // gitalk客户端 css cdn
-
-  COMMENT_GITTER_ROOM: process.env.NEXT_PUBLIC_COMMENT_GITTER_ROOM || '', // gitter聊天室 see https://gitter.im/ 不需要则留空
-  COMMENT_DAO_VOICE_ID: process.env.NEXT_PUBLIC_COMMENT_DAO_VOICE_ID || '', // DaoVoice http://dashboard.daovoice.io/get-started
-  COMMENT_TIDIO_ID: process.env.NEXT_PUBLIC_COMMENT_TIDIO_ID || '', // [tidio_id] -> //code.tidio.co/[tidio_id].js
-
-  COMMENT_VALINE_CDN:
-    process.env.NEXT_PUBLIC_VALINE_CDN ||
-    'https://unpkg.com/valine@1.5.1/dist/Valine.min.js',
-  COMMENT_VALINE_APP_ID: process.env.NEXT_PUBLIC_VALINE_ID || '', // Valine @see https://valine.js.org/quickstart.html 或 https://github.com/stonehank/react-valine#%E8%8E%B7%E5%8F%96app-id-%E5%92%8C-app-key
-  COMMENT_VALINE_APP_KEY: process.env.NEXT_PUBLIC_VALINE_KEY || '',
-  COMMENT_VALINE_SERVER_URLS: process.env.NEXT_PUBLIC_VALINE_SERVER_URLS || '', // 该配置适用于国内自定义域名用户, 海外版本会自动检测(无需手动填写) @see https://valine.js.org/configuration.html#serverURLs
-  COMMENT_VALINE_PLACEHOLDER:
-    process.env.NEXT_PUBLIC_VALINE_PLACEHOLDER || '抢个沙发吧~', // 可以搭配后台管理评论 https://github.com/DesertsP/Valine-Admin  便于查看评论，以及邮件通知，垃圾评论过滤等功能
-
-  COMMENT_WALINE_SERVER_URL: process.env.NEXT_PUBLIC_WALINE_SERVER_URL || '', // 请配置完整的Waline评论地址
-  COMMENT_WALINE_RECENT: process.env.NEXT_PUBLIC_WALINE_RECENT || false, // 最新评论
-
-  // 此评论系统基于WebMention，细节可参考https://webmention.io
-  // 它是一个基于IndieWeb理念的开放式评论系统，下方COMMENT_WEBMENTION包含的属性皆需配置：
-  // ENABLE: 是否开启
-  // AUTH: Webmention使用的IndieLogin，可使用Twitter或Github个人页面连结
-  // HOSTNAME: Webmention绑定之网域，通常即为本站网址
-  // TWITTER_USERNAME: 评论显示区域需要的资讯
-  // TOKEN: Webmention的API token
-  COMMENT_WEBMENTION_ENABLE: process.env.NEXT_PUBLIC_WEBMENTION_ENABLE || false,
-  COMMENT_WEBMENTION_AUTH: process.env.NEXT_PUBLIC_WEBMENTION_AUTH || '',
-  COMMENT_WEBMENTION_HOSTNAME:
-    process.env.NEXT_PUBLIC_WEBMENTION_HOSTNAME || '',
-  COMMENT_WEBMENTION_TWITTER_USERNAME:
-    process.env.NEXT_PUBLIC_TWITTER_USERNAME || '',
-  COMMENT_WEBMENTION_TOKEN: process.env.NEXT_PUBLIC_WEBMENTION_TOKEN || '',
 
   // <---- 评论插件
 
@@ -397,13 +263,6 @@ const BLOG = {
   // Matomo 网站统计
   MATOMO_HOST_URL: process.env.NEXT_PUBLIC_MATOMO_HOST_URL || '', // Matomo服务器地址，不带斜杠
   MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID || '', // Matomo网站ID
-  // ACKEE网站访客统计工具
-  ANALYTICS_ACKEE_TRACKER:
-    process.env.NEXT_PUBLIC_ANALYTICS_ACKEE_TRACKER || '', // e.g 'https://ackee.gdyg.com/tracker.js'
-  ANALYTICS_ACKEE_DATA_SERVER:
-    process.env.NEXT_PUBLIC_ANALYTICS_ACKEE_DATA_SERVER || '', // e.g https://ackee.gdyg.com , don't end with a slash
-  ANALYTICS_ACKEE_DOMAIN_ID:
-    process.env.NEXT_PUBLIC_ANALYTICS_ACKEE_DOMAIN_ID || '', // e.g '82e51db6-dec2-423a-b7c9-b4ff7ebb3302'
 
   SEO_GOOGLE_SITE_VERIFICATION:
     process.env.NEXT_PUBLIC_SEO_GOOGLE_SITE_VERIFICATION || '', // Remove the value or replace it with your own google site verification code
@@ -462,10 +321,6 @@ const BLOG = {
     ext: process.env.NEXT_PUBLIC_NOTION_PROPERTY_EXT || 'ext' // 扩展字段，存放json-string，用于复杂业务
   },
 
-  // RSS订阅
-  MAILCHIMP_LIST_ID: process.env.MAILCHIMP_LIST_ID || null, // 开启mailichimp邮件订阅 客户列表ID ，具体使用方法参阅文档
-  MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY || null, // 开启mailichimp邮件订阅 APIkey
-
   // ANIMATE.css 动画
   ANIMATE_CSS_URL:
     process.env.NEXT_PUBLIC_ANIMATE_CSS_URL ||
@@ -475,7 +330,6 @@ const BLOG = {
   IMG_LAZY_LOAD_PLACEHOLDER:
     process.env.NEXT_PUBLIC_IMG_LAZY_LOAD_PLACEHOLDER ||
     'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', // 懒加载占位图片地址，支持base64或url
-  IMG_URL_TYPE: process.env.NEXT_PUBLIC_IMG_TYPE || 'Notion', // 此配置已失效，请勿使用；AMAZON方案不再支持，仅支持Notion方案。 ['Notion','AMAZON'] 站点图片前缀 默认 Notion:(https://notion.so/images/xx) ， AMAZON(https://s3.us-west-2.amazonaws.com/xxx)
   IMG_SHADOW: process.env.NEXT_PUBLIC_IMG_SHADOW || false, // 文章图片是否自动添加阴影
   IMG_COMPRESS_WIDTH: process.env.NEXT_PUBLIC_IMG_COMPRESS_WIDTH || 800, // Notion图片压缩宽度
 

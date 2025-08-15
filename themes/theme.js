@@ -1,4 +1,4 @@
-import BLOG, { LAYOUT_MAPPINGS } from '@/blog.config'
+import BLOG from '@/blog.config'
 import * as ThemeComponents from '@theme-components'
 import getConfig from 'next/config'
 import dynamic from 'next/dynamic'
@@ -114,17 +114,6 @@ export const useLayoutByTheme = ({ layoutName, theme }) => {
 
   setTimeout(fixThemeDOM, 100)
   return LayoutComponents
-}
-
-/**
- * 根据路径 获取对应的layout名称
- * @param {*} path
- * @returns
- */
-const getLayoutNameByPath = path => {
-  const layoutName = LAYOUT_MAPPINGS[path] || 'LayoutSlug'
-  //   console.log('path-layout',path,layoutName)
-  return layoutName
 }
 
 /**
