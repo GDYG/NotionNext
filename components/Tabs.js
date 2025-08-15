@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Children } from 'react'
 import { siteConfig } from '@/lib/config'
 
 /**
@@ -9,9 +9,7 @@ import { siteConfig } from '@/lib/config'
 const Tabs = ({ className, children }) => {
   const [currentTab, setCurrentTab] = useState(0)
 
-  if (!children) return <></>
-
-  const validChildren = children.filter(c => c)
+  const validChildren = Children.toArray(children).filter(c => c)
 
   if (validChildren.length === 0) {
     return <></>
@@ -28,7 +26,7 @@ const Tabs = ({ className, children }) => {
               key={index}
               className={`${currentTab === index ? 'font-black border-b-2 border-red-600 text-red-600 animate__animated animate__jello' : 'font-extralight cursor-pointer'} text-sm font-sans`}
               onClick={() => setCurrentTab(index)}>
-              {item.key}
+              {item.key.slice(2)}
             </li>
           ))}
         </ul>
